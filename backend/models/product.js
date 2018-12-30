@@ -4,33 +4,37 @@ module.exports = class Product extends BaseModel {
     constructor(connection) {
         super('products', connection)
         this.options = {
-            //table: 'products',
-            //optionalField: {query: 'employeeId', field_name: 'employee_id'},
-            list: {
+            select: {
                 allowed_search_keys: [
-                    'product_id',
+                    'id',
                     'name',
                     'barcode'
                 ],
-                fields: [],
+                selectable_fields: [],
                 //orderBy: [order_field('name', 'ASC'), order_field('last_name', 'ASC')]
             },
             insert: {
-                fields: [
-                    'product_id',
+                required_fields: [
+                    'id',
                     'name',
+                    'description',
                     'barcode'
+                ],
+                optional_fields: [
+                    'withdrawn'
                 ]
             },
             update: {
-                fields: [
-                    'product_id',
+                updatable_fields: [
+                    'id',   
                     'name',
+                    'description',
                     'barcode',
+                    'withdrawn',
                 ]
             },
             delete: {
-                queryField: 'id'
+                query_field: 'id'
             }
         }
     }
